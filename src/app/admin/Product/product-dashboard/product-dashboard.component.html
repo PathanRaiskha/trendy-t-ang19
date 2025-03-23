@@ -1,0 +1,63 @@
+<div fxLayout="row wrap" fxFlex="100">
+    <div fxFlex="100" fxLayoutAlign="center " style="padding-top: 15px;"><h1>Product Dashboard</h1></div>
+    <div fxFlex="10" ></div>
+    <div fxFlex="80" class="grid-container" fxLayout="row wrap">
+        <div  fxFlex="100" fxLayout="row wrap" fxLayoutAlign=" stretch">
+            <button (click)="addNewProduct()" mat-stroked-button color="primary" fxFlex="10"  style="border-color: #3f51b5; height: 75%;"><mat-icon>add</mat-icon>Add Product</button>
+            <mat-form-field  fxFlex="90" style="padding-left: 20px;">
+                <input type="tel" matInput placeholder="Search" name="search"  [(ngModel)]="serchTerm">
+                <button matSuffix mat-button  (click)="searchInTable()"><mat-icon>search</mat-icon></button>
+            </mat-form-field>
+        </div>
+        <table matSort (matSortChange)="sortData($event)" mat-table [dataSource]="dataSource"  fxFlex="100">
+             
+
+             <ng-container matColumnDef="Name">
+                <th mat-sort-header="Name" mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+              </ng-container>
+
+             
+              <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef> Description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="Price">
+                <th mat-sort-header="Price" mat-header-cell *matHeaderCellDef> Price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+              </ng-container>
+             
+              <ng-container matColumnDef="Quantity">
+                  <th mat-sort-header="Quantity" mat-header-cell *matHeaderCellDef> Quantity </th>
+                  <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="onProductUpdate(element)"><mat-icon> launch</mat-icon> </button>
+                    <button mat-icon-button (click)="onProductDelete(element.id)"><mat-icon color="warn"> delete_outline</mat-icon> </button>
+
+                </td>
+              </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsList"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsList;"></tr>
+        </table>
+        <div style="padding: 20px 0px;" fxFlex="100">
+            <mat-paginator 
+                [length]="totalRecords"
+                [pageSize]="pageSize"
+                [pageIndex]="pageIndex"
+                showFirstLastButtons
+                (page)="handlePageEvent($event)"
+          
+            ></mat-paginator>
+        </div>
+        
+    </div>
+    <div fxFlex="10" ></div>
+
+
+</div>

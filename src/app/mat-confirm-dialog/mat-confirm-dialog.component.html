@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" fxFlex="100" >
+    <div fxLayout="row wrap" fxFlex="100"  style="font-size: 22px;">
+        <div fxFlex="82" fxLayoutAlign="center center" style="padding-top: 5px;"></div>
+        <button fxFlex="18" fxLayoutAlign="center center" mat-button [mat-dialog-close]="false"><mat-icon fxFlex="100" style="margin-right: 0px;height: 90%;font-size: 30px;"> close</mat-icon></button>
+    </div>
+    <div fxLayout="row wrap" fxFlex="100"  mat-dialog-content>
+        {{data.contentMsg}}
+    </div>
+    <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="stretch"   mat-dialog-actions style="padding: 0px;">        
+            <button mat-flat-button color="warn" fxFlex="50" cdkFocusInitial [mat-dialog-close]="false" style="height: 100%;border-radius: 0;">NO</button>
+            <button mat-flat-button color="primary" fxFlex="50" [mat-dialog-close]="true" style="background-color: #505e7b;margin: 0px;height: 100%;border-radius: 0;">YES</button>
+    </div>
+
+</div>

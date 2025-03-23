@@ -1,0 +1,17 @@
+.my-menu{
+    height: 60px;
+    font-weight: bold;
+    border-bottom: 1px solid;
+
+}
+.side-nav {
+    background-color: white;
+}
+
+.admin-dash-outlet{
+    background-color: white;
+    margin-left: 15px;
+}
+/* :host  router-outlet + app-user-dashboard{
+    width: 100%;
+} */

@@ -1,0 +1,26 @@
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .example-half-width {
+    width: 50%;
+  }
+  td {
+    padding-right: 8px;
+  }
+  .loader-container{
+    position: absolute;  
+    top:0;
+    bottom: 0;
+    width: calc(100% - 15px);  
+    background-color: black;
+    opacity: 0.8;
+    z-index: 99;
+    
+  }

@@ -1,0 +1,65 @@
+
+
+.profile-circle2{
+  font-weight: bold;font-size: large;
+  background-color: blueviolet;
+  color: white;
+}
+
+.profile-circle{
+  border-radius: 50%;
+  background-color: blueviolet;
+  color: white;
+  height: 40px;
+  width: 40px;
+}
+
+
+.header-menu{
+  padding: 5px 0px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .my-toolbar {
+    background: white;
+  }
+  .menu-logo{
+    height: 60px;
+    padding-top: 10px;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  .header-search{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    margin-right: 50px;
+    cursor: pointer;
+  }
+  .my-search-control{
+    border: 2px solid #0d0f0fd1;
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+  }
+  .example-ripple-container {
+    cursor: pointer;
+    text-align: center;
+  
+  
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+  
+    -webkit-user-drag: none;
+    -webkit-tap-highlight-color: transparent;
+  }

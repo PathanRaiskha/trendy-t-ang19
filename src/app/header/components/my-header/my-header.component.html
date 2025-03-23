@@ -1,0 +1,78 @@
+<!-- Main Header Container -->
+<div class="container-fluid bg-white">
+    <div class="row align-items-center pt-4">
+        <!-- Left Spacing for Large Screens -->
+        <!-- <div class="col-lg-1 d-none d-lg-block"></div> -->
+
+        <!-- Main Content -->
+        <div class="col-md-10 col-lg-12 d-flex flex-wrap align-items-center">
+
+            <!-- Logo Section -->
+            <div class="col-12 col-md-3 text-center text-md-start">
+                <a>
+                    <img src="assets/images/Logos/1.png" class="menu-logo">
+                </a>
+            </div>
+            <!-- Navigation Tabs & Search (Hidden on Small Screens) -->
+            <div class="row col-12 col-md-6 ">
+                <div class="col-md-5 " style="position: relative; top: 19px;"> <!-- Moves Search Bar to Bottom -->
+                    <mat-form-field class="example-full-width">
+                        <span matPrefix> </span>
+                        <input type="tel" matInput placeholder="Search" name="search">
+                        <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-7 mt-auto">
+                    <mat-tab-group animationDuration="0ms">
+                        <mat-tab label="MEN"></mat-tab>
+                        <mat-tab label="WOMEN"></mat-tab>
+                        <mat-tab label="CUSTOMIZABLES"></mat-tab>
+                    </mat-tab-group>
+                </div>
+                
+            </div>
+
+
+            <!-- User & Cart Section -->
+            <div class="col-12 col-md-3 d-flex justify-content-end align-items-center">
+                <button mat-icon-button>
+                    <mat-icon matBadge="4" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
+
+                </button>
+
+                <!-- User Login / Profile Menu -->
+                <button *ngIf="userName == '' || userName == undefined; else showSignOutBtn" mat-icon-button
+                    (click)="goToLogin()">
+                    <mat-icon fontSet="material-icons-outlined">person_outlined</mat-icon>
+                </button>
+                <ng-template #showSignOutBtn>
+                    <button mat-mini-fab [matMenuTriggerFor]="profileMenu" color="accent"
+                        style="font-weight: bold; font-size: large;">
+                        {{ userName | slice:0:1 | uppercase }}
+                    </button>
+                    <mat-menu #profileMenu="matMenu">
+                        <div class="row">
+                            <div class="col-12 border-bottom d-flex align-items-center">
+                                <div class="p-3">
+                                    <button mat-mini-fab disabled class="profile-circle2">
+                                        {{ userName | slice:0:1 | uppercase }}
+                                    </button>
+                                </div>
+                                <div class="col text-center">{{ userName }}</div>
+                            </div>
+                            <div class="col-12">
+                                <button mat-menu-item (click)="Logout()">
+                                    <mat-icon fontSet="material-icons-outlined">logout</mat-icon>
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </mat-menu>
+                </ng-template>
+            </div>
+        </div>
+
+        <!-- Right Spacing for Large Screens -->
+        <!-- <div class="col-lg-1 d-none d-lg-block"></div> -->
+    </div>
+</div>

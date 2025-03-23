@@ -1,0 +1,10 @@
+.loader-container{
+    position: absolute;
+    height: 100%;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 99;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+  }

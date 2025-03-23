@@ -1,0 +1,7 @@
+links for flexLayout:
+https://tburleson-layouts-demos.firebaseapp.com/#/docs
+https://github.com/angular/flex-layout/wiki/API-Documentation
+https://www.youtube.com/watch?v=iWYP3NtKQjs
+https://www.youtube.com/watch?v=hVdHLrKShh8
+https://www.youtube.com/watch?v=O460xQPYckE
+https://www.youtube.com/watch?v=xlHfWqCyNcg&t=1112s

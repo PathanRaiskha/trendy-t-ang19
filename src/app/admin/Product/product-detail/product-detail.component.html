@@ -1,0 +1,177 @@
+<div fxLayout="row wrap" fxFlex="100" style="position: relative;">
+    <div *ngIf="loading" fxFlex="100" class="loader-container">
+        <mat-spinner style="top: 50%; left: 50%;"></mat-spinner>
+      </div>
+    <div fxLayout="row wrap" fxFlex="100" fxLayoutAlign="end start">
+        <button fxFlex="10"  mat-button [mat-dialog-close]="false"><mat-icon fxFlex="100" style="margin-right: 0px;height: 90%;font-size: 30px;"> close</mat-icon></button>    
+    </div>
+
+    <div fxLayout="row wrap" fxFlex="100">
+        <div fxLayout="row wrap" fxFlex="100">
+            <h1 *ngIf ="!data.isForUpdate; else multi" fxFlex="100" fxLayoutAlign="center center">Add New Product</h1>
+            <ng-template #multi> 
+                <h1 fxFlex="100" fxLayoutAlign="center center">Update Product</h1>
+            </ng-template>
+        </div>
+        
+            <form [formGroup]="productService.productForm" >
+                <div fxLayout="row wrap" fxFlex="100">
+                    <div fxLayout="row wrap" fxFlex="50" style="padding: 1rem;">
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Product Name</mat-label>
+                            <input matInput formControlName="name">
+                            <mat-error *ngIf="productService.productForm.controls['name'].errors?.['required']">Product name is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Product Description</mat-label>
+                            <input matInput formControlName="description">
+                            <mat-error *ngIf="productService.productForm.controls['description'].errors?.['required']">Product description is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Product Price</mat-label>
+                            <input matInput formControlName="price">
+                            <mat-error *ngIf="productService.productForm.controls['price'].errors?.['required']">Product price is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Product Quantity</mat-label>
+                            <input matInput formControlName="quantity">
+                            <mat-error *ngIf="productService.productForm.controls['quantity'].errors?.['required']">Product quantity is required</mat-error>
+                        </mat-form-field>
+                        
+                        <mat-slide-toggle fxFlex="100" matInput  color="primary"  formControlName="isCustomizable">
+                            Do You want to customize?
+                        </mat-slide-toggle>
+                        
+                                    
+
+                        
+
+                    </div>
+                    <div fxLayout="row wrap" fxFlex="50" formGroupName="productDetail" style="padding: 1rem;">
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Select Color</mat-label>
+                            <mat-select matInput formControlName="color">
+                                
+                                <ng-container *ngFor="let cl of productColors; let i = index">
+                                    <mat-option [value]="i">{{cl}}</mat-option>                            
+                                </ng-container>                            
+                            </mat-select>
+                            <mat-error *ngIf="productService.productForm.get('productDetail.color')?.errors?.['required']">Product color is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Select Material</mat-label>
+                            <mat-select matInput formControlName="material">
+                                <ng-container *ngFor="let cl of productMaterial; let i = index">
+                                    <mat-option [value]="i">{{cl}}</mat-option>                            
+                                </ng-container>                            
+                            </mat-select>
+                            <mat-error *ngIf="productService.productForm.get('productDetail.material')?.errors?.['required']">Product material is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Select NeckType</mat-label>
+                            <mat-select matInput formControlName="neckType">
+                                <ng-container *ngFor="let cl of productNeckType; let i = index">
+                                    <mat-option [value]="i">{{cl}}</mat-option>                            
+                                </ng-container>                            
+                            </mat-select>
+                            <mat-error *ngIf="productService.productForm.get('productDetail.neckType')?.errors?.['required']">Product quantity is required</mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="100">
+                            <mat-label>Select Size</mat-label>
+                            <mat-select matInput formControlName="size">
+                                <ng-container *ngFor="let cl of productSize; let i = index">
+                                    <mat-option [value]="i">{{cl}}</mat-option>                            
+                                </ng-container>                            
+                            </mat-select>
+                            <mat-error *ngIf="productService.productForm.get('productDetail.size')?.errors?.['required']">Product quantity is required</mat-error>
+                        </mat-form-field>
+                        <mat-slide-toggle fxFlex="100" matInput  color="primary"  formControlName="isFullSleeve">
+                            Full Sleeve
+                        </mat-slide-toggle>
+
+                    </div>
+                    <div fxLayout="row wrap" fxFlex="100">
+                        <div fxLayout="row wrap" fxFlex="50" style="padding: 1rem;"> 
+                            <!-- <img  [attr.src]="frontImageName==''?blankImagePath:frontImageName" fxFlex="100" style="height: 350px;"> -->
+                            <!-- <img  src="http://localhost:5117/ProductImages/8/8BackImage.jpg"  fxFlex="100" style="height: 350px;"> -->
+
+                            <img  [src]="frontImageName1 || 'http://placehold.it/180'"  fxFlex="100" style="height: 350px;">
+
+                            <mat-form-field fxFlex="100">
+                                <mat-label *ngIf="frontImageName!=''; else frontImageChoose">{{frontImageName}}</mat-label>
+                                <ng-template #frontImageChoose>
+                                    <mat-label>Choose front image</mat-label>
+                                </ng-template>
+                                <input matInput hidden disabled>
+                                <button mat-icon-button matSuffix (click)="fileInput1.click()">
+                                    <mat-icon>upload_file</mat-icon>
+                                </button>
+                                <input hidden (change)="onProductImageSelect($event,'1')" #fileInput1 type="file" id="file">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row wrap" fxFlex="50" style="padding: 1rem;"> 
+                            <!-- <img  [attr.src]="frontImageName==''?blankImagePath:frontImageName" fxFlex="100" style="height: 350px;"> -->
+                            <img  [src]="frontImageName2 || 'http://placehold.it/180'"  fxFlex="100" style="height: 350px;">
+
+                            <mat-form-field fxFlex="100">
+                                <mat-label *ngIf="backImageName!=''; else backImageChoose">{{backImageName}}</mat-label>
+                                <ng-template #backImageChoose>
+                                    <mat-label>Choose back image</mat-label>
+                                </ng-template>
+                                <input matInput hidden disabled>
+                                <button mat-icon-button matSuffix (click)="fileInput2.click()">
+                                    <mat-icon>upload_file</mat-icon>
+                                </button>
+                                <input hidden (change)="onProductImageSelect($event,'2')" #fileInput2 type="file" id="file">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row wrap" fxFlex="50" style="padding: 1rem;"> 
+                            <!-- <img  [attr.src]="frontImageName==''?blankImagePath:frontImageName" fxFlex="100" style="height: 350px;"> -->
+                            <img  [src]="frontImageName3 || 'http://placehold.it/180'"  fxFlex="100" style="height: 350px;">
+
+                            <mat-form-field fxFlex="100">
+                                <mat-label *ngIf="leftImageName!=''; else leftImageChoose">{{leftImageName}}</mat-label>
+                                <ng-template #leftImageChoose>
+                                    <mat-label>Choose left image</mat-label>
+                                </ng-template>
+                                <input matInput hidden disabled>
+                                <button mat-icon-button matSuffix (click)="fileInput3.click()">
+                                    <mat-icon>upload_file</mat-icon>
+                                </button>
+                                <input hidden (change)="onProductImageSelect($event,'3')" #fileInput3 type="file" id="file">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row wrap" fxFlex="50" style="padding: 1rem;"> 
+                            <!-- <img  [attr.src]="frontImageName==''?blankImagePath:frontImageName" fxFlex="100" style="height: 350px;"> -->
+                            <img  [src]="frontImageName4 || 'http://placehold.it/180'"  fxFlex="100" style="height: 350px;">
+
+                            <mat-form-field fxFlex="100">
+                                <mat-label *ngIf="rightImageName!=''; else rightImageChoose">{{rightImageName}}</mat-label>
+                                <ng-template #rightImageChoose>
+                                    <mat-label>Choose right image</mat-label>
+                                </ng-template>
+                                <input matInput hidden disabled>
+                                <button mat-icon-button matSuffix (click)="fileInput4.click()">
+                                    <mat-icon>upload_file</mat-icon>
+                                </button>
+                                <input hidden (change)="onProductImageSelect($event,'4')" #fileInput4 type="file" id="file">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxFlex="100" style="padding: 1rem; text-align: right;" >
+                        <button style="margin-left: 1rem;" mat-raised-button color="warn" (click)="OnResetProductForm()">Cancel</button>
+                        <button  style="margin-left: 1rem;" mat-raised-button color="primary" [disabled]="productService.productForm.invalid" (click)="addProduct()" *ngIf ="!data.isForUpdate; else updateBtn">Add</button>
+                        <ng-template #updateBtn> 
+                            <button  style="margin-left: 1rem;" mat-raised-button color="primary" [disabled]="productService.productForm.invalid" (click)="updateProduct()">Update</button>
+                        </ng-template>
+                        
+                    </div>
+                </div>
+            </form>
+        
+        <div fxLayout="row wrap" fxFlex="100"></div>
+    </div>
+</div>
