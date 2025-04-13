@@ -24,6 +24,7 @@ export class UserService {
   
   userForm:FormGroup=new FormGroup({
     $Id:new FormControl(0),
+    role:new FormControl('1',[Validators.required]),
     firstName:new FormControl('',[Validators.required]),
     lastName:new FormControl('',[Validators.required]),
     email:new FormControl('',[Validators.required,Validators.email]),
@@ -48,10 +49,13 @@ export class UserService {
     this.userForm.reset();
   }
   SignUp(userData:any){
-    let u=new User(0,userData.firstName,userData.lastName,userData.email,userData.password,userData.gender==1?true:false,userData.mobile,0,
-      new Address(0,userData.addressForm.street,userData.addressForm.city,userData.addressForm.district,userData.addressForm.state,userData.addressForm.postalCode,new Array<User>,new Array<Order>),new Array<Order>,new Array<Review>);
-    
-    return  this._http.post<ApiResponse>(this.appSettings.GetAppSettings().apiUrl+'Authentication/Register?role=Admin',u).pipe(      catchError(this.handleError));
+    let u=new User(
+      '0',userData.firstName,userData.lastName,userData.email,userData.password,userData.gender==1?true:false,userData.mobile,0,'',
+      new Address(0,userData.addressForm.street,userData.addressForm.city,userData.addressForm.district,userData.addressForm.state,userData.addressForm.postalCode,new Array<User>,new Array<Order>),
+      new Array<Order>,new Array<Review>
+    );
+      var userRole=userData.role==1?'Admin':'Customer'
+    return  this._http.post<ApiResponse>(this.appSettings.GetAppSettings().apiUrl+'Authentication/Register?role='+userRole,u).pipe(      catchError(this.handleError));
      
   }
   
@@ -90,7 +94,7 @@ export class UserService {
 
   }
   EditUser(userData:any){
-    let u=new User(userData.$Id,userData.firstName,userData.lastName,userData.email,userData.password,userData.gender==1?true:false,userData.mobile,userData.addressForm.$Id,
+    let u=new User(userData.$Id,userData.firstName,userData.lastName,userData.email,userData.password,userData.gender==1?true:false,userData.mobile,userData.addressForm.$Id,'',
       new Address(userData.addressForm.$Id,userData.addressForm.street,userData.addressForm.city,userData.addressForm.district,userData.addressForm.state,userData.addressForm.postalCode,new Array<User>,new Array<Order>),new Array<Order>,new Array<Review>);
     
     return  this._http.put<ApiResponse>(this.appSettings.GetAppSettings().apiUrl+'User/UpdateUser',u).pipe(      catchError(this.handleError));

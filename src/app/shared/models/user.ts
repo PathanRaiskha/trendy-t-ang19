@@ -4,7 +4,7 @@ import { Review } from "./review";
 export class User {
         
         constructor(
-        public  Id:number,
+        public  Id:string,
         public  FirstName :string,
         public  LastName:string,
         public  Email :string,
@@ -12,6 +12,7 @@ export class User {
         public  Gender :boolean,
         public  MobileNumber :string,
         public  AddressId :number,
+        public Role:string,
 
         public Address: Address,
         public Orders: Array<Order>,

@@ -14,6 +14,17 @@
                 <h1 class="text-center">Sign-Up</h1>
                 <form [formGroup]="_userService.userForm">
                     <div class="row">
+                        <div class="mb-3">
+                            <label class="form-label">Role:</label>
+                            <mat-radio-group matInput aria-label="Role" formControlName="role">
+                                <mat-radio-button value="1">Admin</mat-radio-button>
+                                <mat-radio-button value="2">Customer</mat-radio-button>
+                            </mat-radio-group>
+                            <mat-error *ngIf="_userService.userForm.controls['role'].errors?.['required']">Role is required</mat-error>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
                         <div class="col-md-6">
                             <mat-form-field class="w-100">
                                 <mat-label>First name</mat-label>

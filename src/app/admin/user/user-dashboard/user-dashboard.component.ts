@@ -27,7 +27,7 @@ export class UserDashboardComponent {
     sortDirection:boolean=true;
     serchTerm:string='';
     //columnsList:string []=["Name","Email","Mobile","Gender","Address","Actions"];
-    columnsList:string []=["Name","email","Mobile","gender","address","action"];
+    columnsList:string []=["Name","email","Mobile","gender","role","address","action"];
 
 
 

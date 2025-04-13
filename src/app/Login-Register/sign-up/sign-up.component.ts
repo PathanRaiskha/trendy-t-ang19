@@ -10,6 +10,7 @@ import { UserService } from '../../shared/services/user.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+  
  loading:boolean=false;
  public _userService=inject(UserService);
  private _toaster=inject(ToastrService);
