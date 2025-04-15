@@ -2,7 +2,7 @@
     <div class="row" style="background-color: white;">
         <!-- Sidebar - Offcanvas for mobile -->
         <div class="col-2" >
-            <div class="text-center my-menu">MENU</div>
+            <div class="text-center my-menu">Admin Dashboard</div>
 
             <mat-list>
                 <a mat-list-item [routerLink]="['',{outlets:{adminOutlet:['productDashboard']}}]" 
@@ -10,7 +10,7 @@
                    #rla1="routerLinkActive" [activated]="rla1.isActive">
                     <div class="d-flex align-items-center">
                         <mat-icon class="me-2">groups</mat-icon>
-                        <span>User Dashboard</span>
+                        <span> User Management</span>
                     </div>
                 </a>
 
@@ -19,7 +19,7 @@
                    #rla2="routerLinkActive" [activated]="rla2.isActive">
                     <div class="d-flex align-items-center">
                         <mat-icon class="me-2">view_cozy</mat-icon>
-                        <span>Product Dashboard</span>
+                        <span>Product Management</span>
                     </div>
                 </a>
 

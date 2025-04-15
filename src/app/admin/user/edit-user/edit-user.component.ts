@@ -30,9 +30,10 @@ export class EditUserComponent {
             
           }, 1000);
         }
-      });
-      this.OnResetUserForm();
+        this.OnResetUserForm();
       this.closeDialog()
+      });
+      
     }
 
   }
