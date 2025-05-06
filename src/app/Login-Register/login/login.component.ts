@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../shared/services/user.service';
 import { AuthenticationService } from '../../shared/services/authentication.service';
 import { UserStoreService } from '../../shared/services/user-store.service';
+import { CartServiceService } from '../../shared/services/cart-service.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class LoginComponent {
   private _router=inject(Router);
   private authService=inject(AuthenticationService);
   private userStore=inject(UserStoreService );
+  private cartService=inject(CartServiceService)
   constructor(   ){
 
     
@@ -28,15 +30,20 @@ export class LoginComponent {
   OnLoginClick(){
     if(this._userService.loginForm.valid){
       this.loading=true;
+      
       this.authService.checkLogin(this._userService.loginForm.value).subscribe(res=>{
         if(res.isSuccess){
+          localStorage.setItem('cart', JSON.stringify(null)); // stores "null" as a string
+
           this.authService.storeToken(res.message);
           const tokenPayload=this.authService.decodedToken();
           this.userStore.setFullNameForStore(tokenPayload);
           this.userStore.setRoleForStore(tokenPayload);
+         
           setTimeout(() => {
           this.loading=false;
             this._toaster.success('Login Successfull...');
+            
             if(this.IsUserAdmin())
             this._router.navigateByUrl('/admin');
           }, 1000);

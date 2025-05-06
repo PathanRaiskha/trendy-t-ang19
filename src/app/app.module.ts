@@ -16,12 +16,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignUpComponent } from './Login-Register/sign-up/sign-up.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 
+import { ProductCardComponent } from './Home/product-card/product-card.component';
+import { HomeComponent } from './Home/home/home.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     LoginComponent,
     MatConfirmDialogComponent,
+    HomeComponent,
+    ProductCardComponent,
+    
+   
   ],
   imports: [
     BrowserAnimationsModule, // Required for toastr animations
@@ -32,6 +39,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     HeaderModule,
     MaterialModule,
     ReactiveFormsModule,
+   
   ],
   providers: [
     provideHttpClient(withInterceptorsFromDi(),withFetch()), // Registers HTTP Interceptors correctly

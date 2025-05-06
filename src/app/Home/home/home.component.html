@@ -1,0 +1,29 @@
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100vw; height: 100vh; overflow: hidden; position: relative;">
+
+  <!-- Outer Container to Center (taking full screen) -->
+  <div style="width: 100%; height: 100%; overflow: hidden; position: relative;">
+
+    <!-- Sliding Container -->
+    <div style="display: flex; transition: transform 0.5s ease-in-out;">
+      
+      <!-- Loop through all product cards, but show only one at a time based on current index -->
+      <div *ngFor="let product of productlist; let i = index"
+           [ngStyle]="{
+             transform: 'translateX(' + (-currentCardIndex * 100) + '%)',
+             transition: 'transform 0.5s ease-in-out'
+           }"
+           style="min-width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;">
+        <app-product-card [productItem]="product"></app-product-card>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+    <button mat-stroked-button color="primary" (click)="previousCard()">Previous</button>
+    <button mat-stroked-button color="primary" (click)="nextCard()">Next</button>
+  </div>
+
+</div>

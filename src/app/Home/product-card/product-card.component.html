@@ -1,0 +1,43 @@
+<mat-card class="product-card" style="width: 300px; height: auto; display: flex; flex-direction: column; justify-content: space-between; margin: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+
+  <!-- Product Image -->
+  <div style="position: relative; width: 100%; height: 250px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+
+    <!-- Left Button -->
+    <button mat-mini-fab color="primary" 
+            (click)="previousImage()" 
+            style="position: absolute; left: 10px; z-index: 2; background-color: rgba(255, 255, 255, 0.7);">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+  
+    <!-- Product Image -->
+    <img mat-card-image
+         [src]="currentImage" 
+         alt="Product Image" 
+         style="width: 100%; height: 100%; object-fit: cover; transition: all 0.5s ease;">
+  
+    <!-- Right Button -->
+    <button mat-mini-fab color="primary" 
+            (click)="nextImage()" 
+            style="position: absolute; right: 10px; z-index: 2; background-color: rgba(255, 255, 255, 0.7);">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  
+  </div>
+  
+
+  <!-- Product Details -->
+  <mat-card-content style="padding: 10px; text-align: left;">
+    <h5 style="margin: 5px 0; font-weight: bold; font-size: 1.1rem; color: #333;">{{ productItem?.name}}</h5>
+    <p style="margin: 5px 0; font-size: 1.2rem; font-weight: bold; color: #388E3C;">₹{{ productItem?.price }}</p>
+    <p style="margin: 5px 0; font-size: 0.9rem; color: #777;">{{ productItem?.quantity }}</p>
+    <p style="margin: 5px 0; font-size: 0.9rem; color: #777;">{{ productItem?.description }}</p>
+   
+  </mat-card-content>
+
+  <!-- Add to Cart Button -->
+  <mat-card-actions>
+    <button mat-raised-button color="primary" style="width: 100%;"  (click)="addToCart(productItem)">Add to Cart</button>
+  </mat-card-actions>
+
+</mat-card>

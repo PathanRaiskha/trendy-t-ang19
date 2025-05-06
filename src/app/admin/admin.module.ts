@@ -10,6 +10,7 @@ import { ProductDetailComponent } from './Product/product-detail/product-detail.
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AdminRoutingModule } from './admin-routing.module';
+import { ProductCardComponent } from '../Home/product-card/product-card.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     OrderDashboardComponent,
     DeliveryDashboardComponent,
     EditUserComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    
   ],
   imports: [
     ReactiveFormsModule,

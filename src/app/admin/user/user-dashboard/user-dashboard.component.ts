@@ -8,6 +8,15 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 import { User } from '../../../shared/models/user';
 import { UserService } from '../../../shared/services/user.service';
 import { ConfirmDiaogService } from '../../../shared/services/confirm-diaog.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   standalone:false,

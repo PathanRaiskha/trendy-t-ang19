@@ -90,9 +90,9 @@ getAllProductsPagedAsync(pgIndex:number,orderBy:string,orderByAsc:boolean){
   }
   addNewProduct(){
       this.dialog.open(ProductDetailComponent,{
-        width:'790px',  
-         height:'1000px'     ,
-        // minHeight:'475px',
+        width:'50%',  
+         height:'90%'     ,
+      
         disableClose:true,
         data:{
           isForUpdate:false
@@ -120,6 +120,7 @@ getAllProductsPagedAsync(pgIndex:number,orderBy:string,orderByAsc:boolean){
   onProductUpdate(row:any){
     
     this.productService.productForm.patchValue({$Id:row.id,name:row.name,description:row.description,price:row.price,quantity:row.quantity,isCustomizable:row.isCustomizable})
+    // this.productService.productForm.get('productDetail.id')?.patchValue(row.productDetail.Id)
     this.productService.productForm.get('productDetail.isFullSleeve')?.patchValue(row.productDetail.isFullSleeve)
     this.productService.productForm.get('productDetail.color')?.patchValue(row.productDetail.color)
     this.productService.productForm.get('productDetail.material')?.patchValue(row.productDetail.material)
@@ -128,10 +129,10 @@ getAllProductsPagedAsync(pgIndex:number,orderBy:string,orderByAsc:boolean){
     
     
     const dialogConfig=new MatDialogConfig()
-     dialogConfig.disableClose=true;
-     dialogConfig.autoFocus=true;
-     dialogConfig.width="50%";
-     dialogConfig.height="90%";
+    dialogConfig.disableClose=true;
+    dialogConfig.autoFocus=true;
+    dialogConfig.width="50%";
+    dialogConfig.height="90%";
      dialogConfig.data={
       isForUpdate:true
     }

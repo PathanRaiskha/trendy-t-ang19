@@ -31,7 +31,8 @@
                 </div>
                 
             </div>
-
+                
+            
 
             <!-- User & Cart Section -->
             <div class="col-12 col-md-3 d-flex justify-content-end align-items-center">
@@ -39,6 +40,10 @@
                     <mat-icon matBadge="4" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
 
                 </button>
+                
+                <button *ngIf="isLoggedIn" mat-icon-button >
+                    <mat-icon matBadge="{{ cartCount }}" matBadgeColor="accent">shopping_cart</mat-icon>
+                  </button>
 
                 <!-- User Login / Profile Menu -->
                 <button *ngIf="userName == '' || userName == undefined; else showSignOutBtn" mat-icon-button

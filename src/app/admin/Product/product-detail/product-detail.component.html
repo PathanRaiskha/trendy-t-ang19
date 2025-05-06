@@ -1,197 +1,194 @@
-<div class="container-fluid position-relative">
-    <div *ngIf="loading" class="w-100 d-flex justify-content-center align-items-center loader-container">
-      <mat-spinner></mat-spinner>
-    </div>
-  
-    <div class="w-100 d-flex justify-content-end">
-      <button class="btn btn-outline-secondary" [mat-dialog-close]="false">
-        <mat-icon style="font-size: 30px;">close</mat-icon>
-      </button>
-    </div>
-  
-    <div class="w-100">
-      <div class="w-100 text-center">
-        <h1 *ngIf="!data.isForUpdate; else multi">Add New Product</h1>
-        <ng-template #multi>
-          <h1>Update Product</h1>
-        </ng-template>
-      </div>
-  
-      <form [formGroup]="productService.productForm">
+<h2 mat-dialog-title>Add New Product </h2>
+<mat-dialog-content class="mat-typography">
+
+    <!-- Add your form or content here -->
+    <div class="container">
         <div class="row">
-          <!-- Left Section -->
-          <div class="col-md-6 p-3">
-            <mat-form-field class="w-100">
-              <mat-label>Product Name</mat-label>
-              <input matInput formControlName="name">
-              <mat-error *ngIf="productService.productForm.controls['name'].errors?.['required']">
-                Product name is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-form-field class="w-100">
-              <mat-label>Product Description</mat-label>
-              <input matInput formControlName="description">
-              <mat-error *ngIf="productService.productForm.controls['description'].errors?.['required']">
-                Product description is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-form-field class="w-100">
-              <mat-label>Product Price</mat-label>
-              <input matInput formControlName="price">
-              <mat-error *ngIf="productService.productForm.controls['price'].errors?.['required']">
-                Product price is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-form-field class="w-100">
-              <mat-label>Product Quantity</mat-label>
-              <input matInput formControlName="quantity">
-              <mat-error *ngIf="productService.productForm.controls['quantity'].errors?.['required']">
-                Product quantity is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-slide-toggle class="w-100" matInput color="primary" formControlName="isCustomizable">
-              Do You want to customize?
-            </mat-slide-toggle>
-          </div>
-  
-          <!-- Right Section -->
-          <div class="col-md-6 p-3" formGroupName="productDetail">
-            <mat-form-field class="w-100">
-              <mat-label>Select Color</mat-label>
-              <mat-select matInput formControlName="color">
-                <ng-container *ngFor="let cl of productColors; let i = index">
-                  <mat-option [value]="i">{{ cl }}</mat-option>
-                </ng-container>
-              </mat-select>
-              <mat-error *ngIf="productService.productForm.get('productDetail.color')?.errors?.['required']">
-                Product color is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-form-field class="w-100">
-              <mat-label>Select Material</mat-label>
-              <mat-select matInput formControlName="material">
-                <ng-container *ngFor="let cl of productMaterial; let i = index">
-                  <mat-option [value]="i">{{ cl }}</mat-option>
-                </ng-container>
-              </mat-select>
-              <mat-error *ngIf="productService.productForm.get('productDetail.material')?.errors?.['required']">
-                Product material is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-form-field class="w-100">
-              <mat-label>Select NeckType</mat-label>
-              <mat-select matInput formControlName="neckType">
-                <ng-container *ngFor="let cl of productNeckType; let i = index">
-                  <mat-option [value]="i">{{ cl }}</mat-option>
-                </ng-container>
-              </mat-select>
-              <mat-error *ngIf="productService.productForm.get('productDetail.neckType')?.errors?.['required']">
-                Product neck type is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-form-field class="w-100">
-              <mat-label>Select Size</mat-label>
-              <mat-select matInput formControlName="size">
-                <ng-container *ngFor="let cl of productSize; let i = index">
-                  <mat-option [value]="i">{{ cl }}</mat-option>
-                </ng-container>
-              </mat-select>
-              <mat-error *ngIf="productService.productForm.get('productDetail.size')?.errors?.['required']">
-                Product size is required
-              </mat-error>
-            </mat-form-field>
-  
-            <mat-slide-toggle class="w-100" matInput color="primary" formControlName="isFullSleeve">
-              Full Sleeve
-            </mat-slide-toggle>
-          </div>
-  
-          <!-- Images Section -->
-         <!-- Images Section - One per row -->
-<div class="col-12 p-3">
-    <img [src]="frontImageName1 || 'http://placehold.it/180'" class="img-fluid mb-2" style="height: 350px;">
-    <mat-form-field class="w-100">
-      <mat-label *ngIf="frontImageName != ''; else frontImageChoose">Front Image: {{ frontImageName }}</mat-label>
-      <ng-template #frontImageChoose><mat-label>Choose front image</mat-label></ng-template>
-      <input matInput hidden disabled>
-      <button mat-icon-button matSuffix (click)="fileInput1.click()">
-        <mat-icon>upload_file</mat-icon>
-      </button>
-      <input hidden type="file" (change)="onProductImageSelect($event,'1')" #fileInput1>
-    </mat-form-field>
-  </div>
-  
-  <div class="col-12 p-3">
-    <img [src]="frontImageName2 || 'http://placehold.it/180'" class="img-fluid mb-2" style="height: 350px;">
-    <mat-form-field class="w-100">
-      <mat-label *ngIf="backImageName != ''; else backImageChoose">Back Image: {{ backImageName }}</mat-label>
-      <ng-template #backImageChoose><mat-label>Choose back image</mat-label></ng-template>
-      <input matInput hidden disabled>
-      <button mat-icon-button matSuffix (click)="fileInput2.click()">
-        <mat-icon>upload_file</mat-icon>
-      </button>
-      <input hidden type="file" (change)="onProductImageSelect($event,'2')" #fileInput2>
-    </mat-form-field>
-  </div>
-  
-  <div class="col-12 p-3">
-    <img [src]="frontImageName3 || 'http://placehold.it/180'" class="img-fluid mb-2" style="height: 350px;">
-    <mat-form-field class="w-100">
-      <mat-label *ngIf="leftImageName != ''; else leftImageChoose">Left Image: {{ leftImageName }}</mat-label>
-      <ng-template #leftImageChoose><mat-label>Choose left image</mat-label></ng-template>
-      <input matInput hidden disabled>
-      <button mat-icon-button matSuffix (click)="fileInput3.click()">
-        <mat-icon>upload_file</mat-icon>
-      </button>
-      <input hidden type="file" (change)="onProductImageSelect($event,'3')" #fileInput3>
-    </mat-form-field>
-  </div>
-  
-  <div class="col-12 p-3">
-    <img [src]="frontImageName4 || 'http://placehold.it/180'" class="img-fluid mb-2" style="height: 350px;">
-    <mat-form-field class="w-100">
-      <mat-label *ngIf="rightImageName != ''; else rightImageChoose">Right Image: {{ rightImageName }}</mat-label>
-      <ng-template #rightImageChoose><mat-label>Choose right image</mat-label></ng-template>
-      <input matInput hidden disabled>
-      <button mat-icon-button matSuffix (click)="fileInput4.click()">
-        <mat-icon>upload_file</mat-icon>
-      </button>
-      <input hidden type="file" (change)="onProductImageSelect($event,'4')" #fileInput4>
-    </mat-form-field>
-  </div>
-  
-  
-          <!-- Action Buttons -->
-          <div class="col-12 text-end mt-3">
-  <button mat-raised-button color="warn" class="me-2" (click)="OnResetProductForm()">
-    Cancel
-  </button>
+            <div *ngIf="loading" class="col-12 d-flex justify-content-center align-items-center loader-container">
+                <mat-spinner></mat-spinner>
+              </div>
 
-  <button mat-raised-button color="primary" class="me-2"
-          [disabled]="productService.productForm.invalid"
-          (click)="addProduct()"
-          *ngIf="!data.isForUpdate; else updateBtn">
-    Add
-  </button>
 
-  <ng-template #updateBtn>
-    <button mat-raised-button color="primary"
-            [disabled]="productService.productForm.invalid"
-            (click)="updateProduct()">
-      Update
-    </button>
-  </ng-template>
-</div>
+            <form [formGroup]="productService.productForm" class="row">
+                <!-- <div class="row"> -->
+                <!-- Left Section -->
+                <div class="col-md-6 p-3">
+                    <mat-form-field class="w-100">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput formControlName="name">
+                        <mat-error *ngIf="productService.productForm.controls['name'].errors?.['required']">
+                            Product name is required
+                        </mat-error>
+                    </mat-form-field>
 
+                    <mat-form-field class="w-100">
+                        <mat-label>Product Description</mat-label>
+                        <input matInput formControlName="description">
+                        <mat-error *ngIf="productService.productForm.controls['description'].errors?.['required']">
+                            Product description is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Product Price</mat-label>
+                        <input matInput formControlName="price">
+                        <mat-error *ngIf="productService.productForm.controls['price'].errors?.['required']">
+                            Product price is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Product Quantity</mat-label>
+                        <input matInput formControlName="quantity">
+                        <mat-error *ngIf="productService.productForm.controls['quantity'].errors?.['required']">
+                            Product quantity is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-slide-toggle class="w-100" matInput color="primary" formControlName="isCustomizable">
+                        Do You want to customize?
+                    </mat-slide-toggle>
+                </div>
+
+                <!-- Right Section -->
+                <div class="col-md-6 p-3" formGroupName="productDetail">
+                    <mat-form-field class="w-100">
+                        <mat-label>Select Color</mat-label>
+                        <mat-select matInput formControlName="color">
+                            <ng-container *ngFor="let cl of productColors; let i = index">
+                                <mat-option [value]="i">{{ cl }}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error *ngIf="productService.productForm.get('productDetail.color')?.errors?.['required']">
+                            Product color is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Select Material</mat-label>
+                        <mat-select matInput formControlName="material">
+                            <ng-container *ngFor="let cl of productMaterial; let i = index">
+                                <mat-option [value]="i">{{ cl }}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="productService.productForm.get('productDetail.material')?.errors?.['required']">
+                            Product material is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Select NeckType</mat-label>
+                        <mat-select matInput formControlName="neckType">
+                            <ng-container *ngFor="let cl of productNeckType; let i = index">
+                                <mat-option [value]="i">{{ cl }}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="productService.productForm.get('productDetail.neckType')?.errors?.['required']">
+                            Product neck type is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100">
+                        <mat-label>Select Size</mat-label>
+                        <mat-select matInput formControlName="size">
+                            <ng-container *ngFor="let cl of productSize; let i = index">
+                                <mat-option [value]="i">{{ cl }}</mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error *ngIf="productService.productForm.get('productDetail.size')?.errors?.['required']">
+                            Product size is required
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-slide-toggle class="w-100" matInput color="primary" formControlName="isFullSleeve">
+                        Full Sleeve
+                    </mat-slide-toggle>
+                </div>
+
+                <!-- Images Section -->
+                <!-- Images Section - One per row -->
+                <div class="col-12 p-3">
+                    <img [src]="frontImageName1 || 'http://placehold.it/180'" class="img-fluid mb-2"
+                        style="height: 350px;">
+                    <mat-form-field class="w-100">
+                        <mat-label *ngIf="frontImageName != ''; else frontImageChoose">Front Image: {{ frontImageName
+                            }}</mat-label>
+                        <ng-template #frontImageChoose><mat-label>Choose front image</mat-label></ng-template>
+                        <input matInput hidden disabled>
+                        <button mat-icon-button matSuffix (click)="fileInput1.click()">
+                            <mat-icon>upload_file</mat-icon>
+                        </button>
+                        <input hidden type="file" (change)="onProductImageSelect($event,'1')" #fileInput1>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 p-3">
+                    <img [src]="frontImageName2 || 'http://placehold.it/180'" class="img-fluid mb-2"
+                        style="height: 350px;">
+                    <mat-form-field class="w-100">
+                        <mat-label *ngIf="backImageName != ''; else backImageChoose">Back Image: {{ backImageName
+                            }}</mat-label>
+                        <ng-template #backImageChoose><mat-label>Choose back image</mat-label></ng-template>
+                        <input matInput hidden disabled>
+                        <button mat-icon-button matSuffix (click)="fileInput2.click()">
+                            <mat-icon>upload_file</mat-icon>
+                        </button>
+                        <input hidden type="file" (change)="onProductImageSelect($event,'2')" #fileInput2>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 p-3">
+                    <img [src]="frontImageName3 || 'http://placehold.it/180'" class="img-fluid mb-2"
+                        style="height: 350px;">
+                    <mat-form-field class="w-100">
+                        <mat-label *ngIf="leftImageName != ''; else leftImageChoose">Left Image: {{ leftImageName
+                            }}</mat-label>
+                        <ng-template #leftImageChoose><mat-label>Choose left image</mat-label></ng-template>
+                        <input matInput hidden disabled>
+                        <button mat-icon-button matSuffix (click)="fileInput3.click()">
+                            <mat-icon>upload_file</mat-icon>
+                        </button>
+                        <input hidden type="file" (change)="onProductImageSelect($event,'3')" #fileInput3>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12 p-3">
+                    <img [src]="frontImageName4 || 'http://placehold.it/180'" class="img-fluid mb-2"
+                        style="height: 350px;">
+                    <mat-form-field class="w-100">
+                        <mat-label *ngIf="rightImageName != ''; else rightImageChoose">Right Image: {{ rightImageName
+                            }}</mat-label>
+                        <ng-template #rightImageChoose><mat-label>Choose right image</mat-label></ng-template>
+                        <input matInput hidden disabled>
+                        <button mat-icon-button matSuffix (click)="fileInput4.click()">
+                            <mat-icon>upload_file</mat-icon>
+                        </button>
+                        <input hidden type="file" (change)="onProductImageSelect($event,'4')" #fileInput4>
+                    </mat-form-field>
+                </div>
+                <!-- </div> -->
+            </form>
+            <div class="col-12 d-flex justify-content-center align-items-center mb-3">
+
+            </div>
         </div>
-      </form>
     </div>
-  </div>
-  
+</mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close (click)="OnResetProductForm()">Cancel</button>
+
+        <button mat-button color="primary"  [disabled]="productService.productForm.invalid"
+            (click)="addProduct()" *ngIf="!data.isForUpdate; else updateBtn">
+            Add
+        </button>
+
+        <ng-template #updateBtn>
+            <button mat-button color="primary" 
+                (click)="updateProduct()">
+                Update
+            </button>
+        </ng-template> 
+
+    </mat-dialog-actions>
