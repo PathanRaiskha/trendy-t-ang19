@@ -4,7 +4,8 @@ export enum ProductColor {
     Blue,
     Yellow,
     White,
-    Black
+    Black,
+    Gray
 }
 export enum ProductSize {
     Small, Medium, Large, XL, XXL
