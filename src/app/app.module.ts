@@ -18,17 +18,20 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
 
 import { ProductCardComponent } from './Home/product-card/product-card.component';
 import { HomeComponent } from './Home/home/home.component';
+import { ShowCartListComponent } from './showCartList/show-cart-list/show-cart-list.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SignUpComponent,
-    LoginComponent,
-    MatConfirmDialogComponent,
-    HomeComponent,
-    ProductCardComponent,
-    
-   
+   AppComponent,
+  SignUpComponent,
+  LoginComponent,
+  MatConfirmDialogComponent,
+  HomeComponent,
+  ProductCardComponent,
+  ShowCartListComponent
+  
+
   ],
   imports: [
     BrowserAnimationsModule, // Required for toastr animations
