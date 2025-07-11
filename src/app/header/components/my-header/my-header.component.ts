@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../shared/services/authentication.service';
 import { UserStoreService } from '../../../shared/services/user-store.service';
+import { AddToCartService } from '../../../shared/services/add-to-cart.service';
 
 
 
@@ -13,6 +14,9 @@ import { UserStoreService } from '../../../shared/services/user-store.service';
   styleUrls: ['./my-header.component.css']
 })
 export class MyHeaderComponent {
+
+
+
 
   cartCount: number = 0;
   isLoggedIn: boolean = false;
@@ -26,39 +30,54 @@ export class MyHeaderComponent {
   private _router = inject(Router);
   private userStore = inject(UserStoreService);
   private authService = inject(AuthenticationService);
-  constructor() {
+  constructor(private cartService: AddToCartService) {
 
   }
   ngOnInit() {
-    
+
 
     this.userStore.getFullNameFromStore().subscribe(res => {
       let un = this.authService.getfullNameFromToken();
       this.userName = res || un;
 
       this.isLoggedIn = this.authService.isLoggedIn();
+      
+      this.cartService.getCartObservable().subscribe((items) => {
+        this.cartCount = items.length;
+      });
 
-    if (this.isLoggedIn) {
-      const cart = JSON.parse(localStorage.getItem('cartItems') || '[]');
-      this.cartCount = cart.length;
+
+
+
+
     }
 
-    });
+    )
+  };
 
 
 
 
-  }
+
   goToLogin() {
     this._router.navigateByUrl('/login');
   }
   Logout() {
-     localStorage.removeItem('cartItems');
+    localStorage.removeItem('cartItems');
     this.authService.signOut();
     this.userStore.setFullNameForStore(undefined);
     this.userStore.setRoleForStore(undefined);
   }
 
+  showcartedproduct() {
+    this._router.navigateByUrl('/cartlist');
+
+  }
+
+
+  gotoHome(){
+    this._router.navigateByUrl('/home');
+  }
 
 
 
