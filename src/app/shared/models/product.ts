@@ -10,6 +10,7 @@ export class Product {
         public  Name : string='',
         public  Description : string='',
         public  IsCustomizable : boolean=false,
+        
         public ProductDetail?:ProductDetail,
         public OrdersList?:Array<OrderedProducts>,
         public Reviews?:Array<Review>
