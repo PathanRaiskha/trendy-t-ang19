@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Login-Register/login/login.component';
 import { SignUpComponent } from './Login-Register/sign-up/sign-up.component';
 import { HomeComponent } from './Home/home/home.component';
+import { ShowCartListComponent } from './showCartList/show-cart-list/show-cart-list.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
   {path:'home',component:HomeComponent},
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignUpComponent},
+  {path:'cartlist',component:ShowCartListComponent},
   
   {path:'admin',loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)},
   {path:'**',redirectTo:'login',pathMatch:'full'}
