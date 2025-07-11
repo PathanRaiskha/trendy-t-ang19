@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../../shared/models/product';
 import { CartServiceService } from '../../shared/services/cart-service.service';
+import { AuthenticationService } from '../../shared/services/authentication.service';
+import { Router } from '@angular/router';
+import { AddToCartService } from '../../shared/services/add-to-cart.service';
 
 
 
@@ -11,7 +14,7 @@ import { CartServiceService } from '../../shared/services/cart-service.service';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-constructor(private cartService:CartServiceService){
+constructor(private cartService:AddToCartService,private authService: AuthenticationService,private router: Router){
 
 }
 
@@ -70,15 +73,21 @@ previousImage() {
 
 
 
-addToCart(productItem :any) {
+ addToCart(product: any) {
+    if (!this.authService.isLoggedIn()) {
+      alert('Please log in to add items to your cart');
+      this.router.navigate(['/login']);
+      return;
+    }
 
-  this.cartService.addToCart(productItem )
+    this.cartService.addToCart(product);
+  }
 }
 
 
 
   
-}
+
 
   
 
