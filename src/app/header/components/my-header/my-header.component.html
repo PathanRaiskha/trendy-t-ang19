@@ -29,21 +29,39 @@
                         <mat-tab label="CUSTOMIZABLES"></mat-tab>
                     </mat-tab-group>
                 </div>
-                
+
+
+
             </div>
-                
-            
+
+           
+           
 
             <!-- User & Cart Section -->
             <div class="col-12 col-md-3 d-flex justify-content-end align-items-center">
+                 <button mat-icon-button  (click)="gotoHome()">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>
+
+                </button>
+
+
                 <button mat-icon-button>
                     <mat-icon matBadge="4" matBadgeColor="warn" aria-hidden="false">notifications</mat-icon>
 
                 </button>
+
                 
-                <button *ngIf="isLoggedIn" mat-icon-button >
-                    <mat-icon matBadge="{{ cartCount }}" matBadgeColor="accent">shopping_cart</mat-icon>
-                  </button>
+                    
+                    
+                    <button mat-icon-button  *ngIf="isLoggedIn" (click)="showcartedproduct()">
+
+                        <mat-icon matBadge="{{ cartCount }}" matBadgeColor="warn" aria-hidden="false">shopping_cart</mat-icon>
+
+                       
+                    </button>
+             
+                
+
 
                 <!-- User Login / Profile Menu -->
                 <button *ngIf="userName == '' || userName == undefined; else showSignOutBtn" mat-icon-button
