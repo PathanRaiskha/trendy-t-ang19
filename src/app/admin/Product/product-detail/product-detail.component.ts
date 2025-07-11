@@ -121,6 +121,7 @@ export class ProductDetailComponent {
         this.productService.productForm.get('price')?.value,
         this.productService.productForm.get('name')?.value,
         this.productService.productForm.get('description')?.value,
+         
         this.productService.productForm.get('isCustomizable')?.value,
         new ProductDetail(
           // this.productService.productForm. 
@@ -193,6 +194,7 @@ export class ProductDetailComponent {
       this.productService.productForm.get('name')?.value,
       this.productService.productForm.get('description')?.value,
       this.productService.productForm.get('isCustomizable')?.value,
+
       new ProductDetail(
         0,
         this.productService.productForm.get('productDetail.isFullSleeve')?.value,
