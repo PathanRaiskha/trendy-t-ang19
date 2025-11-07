@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Login-Register/login/login.component';
 import { SignUpComponent } from './Login-Register/sign-up/sign-up.component';
 import { HomeComponent } from './Home/home/home.component';
-import { ShowCartListComponent } from './showCartList/show-cart-list/show-cart-list.component';
+import { ShowCartListComponent } from './cart/show-cart-list/show-cart-list.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
