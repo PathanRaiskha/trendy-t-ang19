@@ -18,7 +18,7 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
 
 import { ProductCardComponent } from './Home/product-card/product-card.component';
 import { HomeComponent } from './Home/home/home.component';
-import { ShowCartListComponent } from './showCartList/show-cart-list/show-cart-list.component';
+import { ShowCartListComponent } from './cart/show-cart-list/show-cart-list.component';
 
 
 @NgModule({
